@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"pub_sub/handler"
+	"pub_sub/components"
 
 	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
 )
@@ -25,8 +25,9 @@ func main() {
 	for {
 		msg, err := c.ReadMessage(-1)
 		value := string(msg.Value)
-		var rb handler.Request_body
+		var rb components.Request_body
 		json.Unmarshal([]byte(value), &rb)
+
 		mb := rb.Message_body
 		tid := rb.Transaction_id
 		email := rb.Email
@@ -35,7 +36,7 @@ func main() {
 		if err == nil {
 
 			fmt.Printf("%s: Transaction ID: %s, Message: %s\n Email: %s\n Mobile: %s\n", msg.TopicPartition, tid, mb, email, mobile)
-			//handler.Mail(email)
+			components.Mail(email, tid, mb)
 		} else {
 			// The client will automatically try to recover from all errors.
 			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
