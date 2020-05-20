@@ -35,6 +35,7 @@ func main() {
 		if err == nil {
 
 			fmt.Printf("%s: Transaction ID: %s, Message: %s\n Email: %s\n Mobile: %s\n", msg.TopicPartition, tid, mb, email, mobile)
+			//handler.Mail(email)
 		} else {
 			// The client will automatically try to recover from all errors.
 			fmt.Printf("Consumer error: %v (%v)\n", err, msg)

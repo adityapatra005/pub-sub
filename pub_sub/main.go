@@ -31,7 +31,8 @@ func runConnection() {
 func main() {
 
 	router := gin.Default()
-	runConnection()
+	kafka.RunConnection()
+	//runConnection()
 	router.POST("/done", func(c *gin.Context) {
 
 		var body handler.Request_body
@@ -39,19 +40,25 @@ func main() {
 		e, err := json.Marshal(body)
 		fmt.Println(err)
 
-		if body.Message_body == "successfull" {
+		c.JSON(200, gin.H{
+			"status": "Transaction Successful",
+		})
+		err1 := kafka.Push(context.Background(), nil, []byte(e))
+		fmt.Println(err1)
 
-			c.JSON(200, gin.H{
-				"status": "Transaction Successful",
-			})
-			err := kafka.Push(context.Background(), nil, []byte(e))
-			fmt.Println(err)
+		// if body.Message_body == "successfull" {
 
-		} else {
-			c.JSON(200, gin.H{
-				"Status": "Your transaction failed",
-			})
-		}
+		// 	c.JSON(200, gin.H{
+		// 		"status": "Transaction Successful",
+		// 	})
+		// 	err := kafka.Push(context.Background(), nil, []byte(e))
+		// 	fmt.Println(err)
+
+		// } else {
+		// 	c.JSON(200, gin.H{
+		// 		"Status": "Your transaction failed",
+		// 	})
+		// }
 
 	})
 

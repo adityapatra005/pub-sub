@@ -1,6 +1,7 @@
 package kafka
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/segmentio/kafka-go"
@@ -29,14 +30,14 @@ func Configure(kafkaBrokerUrls []string, clientId string, topic string) (w *kafk
 	return w, nil
 }
 
-// func runConnection() {
+func RunConnection() {
 
-// 	kafkaBrokersUrls := []string{"localhost:19092", "localhost:29092", "localhost:39092"}
-// 	var clientId string = "first_consumer"
-// 	var foo string = "foo"
-// 	fmt.Println(kafkaBrokersUrls)
-// 	var w, error = Configure(kafkaBrokersUrls, clientId, foo)
+	kafkaBrokersUrls := []string{"localhost:19092", "localhost:29092", "localhost:39092"}
+	var clientId string = "first_consumer"
+	var foo string = "foo"
+	fmt.Println(kafkaBrokersUrls)
+	var w, error = Configure(kafkaBrokersUrls, clientId, foo)
 
-// 	fmt.Println(w, error)
+	fmt.Println(w, error)
 
-// }
+}
