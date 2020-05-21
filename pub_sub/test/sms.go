@@ -12,8 +12,8 @@ import (
 
 func main() {
 	// Set account keys & information
-	accountSid := "ACcdb7020466c99d16161be399b41f8781"
-	authToken := "42db7068824bf129911a830a2da81c90"
+	accountSid := "xxxx"
+	authToken := "xxxx"
 	urlStr := "https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json"
 
 	// Create possible message bodies
