@@ -18,7 +18,7 @@ func (s *smtpServer) Address() string {
 func Mail(email string, tid string, msg string) {
 	// Sender data.
 	from := "adityapdummy@gmail.com"
-	password := "patra005"
+	password := "patra"
 
 	// Receiver email address.
 	to := []string{
