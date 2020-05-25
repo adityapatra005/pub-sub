@@ -12,7 +12,7 @@ func main() {
 	router := gin.Default()
 	kafka.RunConnection()
 
-	router.POST("/done", handler.DonePost())
+	router.POST("/api/v1/produce", handler.DonePost())
 
 	router.Run(":8080")
 
